@@ -8,9 +8,21 @@
     <packaging>war</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <!-- This fixes the "package jakarta.servlet does not exist" error -->
+        <!-- Use this for Tomcat 10 or Tomcat 11 -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <!-- Connects to your organization's Nexus Repository -->
     <distributionManagement>
@@ -27,6 +39,17 @@
     <build>
         <finalName>webapp-sample</finalName>
         <plugins>
+            <!-- Standard plugin to compile Java 17 code -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <!-- Plugin to package the WAR file -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -35,4 +58,3 @@
         </plugins>
     </build>
 </project>
-
