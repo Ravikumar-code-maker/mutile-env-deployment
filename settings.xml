@@ -1,4 +1,6 @@
-">
+<settings xmlns="maven.apache.org"
+          xmlns:xsi="www.w3.org"
+          xsi:schemaLocation="maven.apache.org maven.apache.org">
   <servers>
     <server>
       <id>nexus-releases</id>
@@ -12,4 +14,3 @@
     </server>
   </servers>
 </settings>
-
